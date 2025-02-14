@@ -14,7 +14,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
-@dataclass
+@dataclass  #@dataclass decorator is used for automatically initialize the special functions such as : __init__(), __repr__(), __hash__(), __eq__() 
 class DataTransformationConfig:
     preprocessor_obj_file_path=os.path.join('artifacts',"preprocessor.pkl") 
 
@@ -34,10 +34,9 @@ class DataTransformation:
             
             num_pipeline=Pipeline(
                 steps=[
-                    ("imputer",SimpleImputer(strategy="median")),
-                    ("scalet",StandardScaler(with_mean=False))
-
-                ]
+                        ("imputer",SimpleImputer(strategy="median")),
+                        ("scaler",StandardScaler(with_mean=False))
+                      ]
 
             )
 
