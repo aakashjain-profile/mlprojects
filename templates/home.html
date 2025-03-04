@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Predictor</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Student Exam Performance Indicator</h1>
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <fieldset>
+                <legend>Student Exam Performance Prediction</legend>
+
+                <!-- Gender -->
+                <div class="mb-3">
+                    <label class="form-label">Gender</label>
+                    <select class="form-control" name="gender" required>
+                        <option value="" selected disabled>Select your Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <!-- Race or Ethnicity -->
+                <div class="mb-3">
+                    <label class="form-label">Race or Ethnicity</label>
+                    <select class="form-control" name="ethnicity" required>
+                        <option value="" selected disabled>Select Ethnicity</option>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+
+                <!-- parental_level_of_education -->
+                <div class="mb-3">
+                    <label class="form-label">parental_level_of_education</label>
+                    <select class="form-control" name="parental_level_of_education" required>
+                        <option value="" selected disabled>Select Parent Education</option>
+                        <option value="associate's degree">Associate's Degree</option>
+                        <option value="bachelor's degree">Bachelor's Degree</option>
+                        <option value="high school">High School</option>
+                        <option value="master's degree">Master's Degree</option>
+                        <option value="some college">Some College</option>
+                        <option value="some high school">Some High School</option>
+                    </select>
+                </div>
+
+                <!-- Lunch Type -->
+                <div class="mb-3">
+                    <label class="form-label">Lunch Type</label>
+                    <select class="form-control" name="lunch" required>
+                        <option value="" selected disabled>Select Lunch Type</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                        <option value="standard">Standard</option>
+                    </select>
+                </div>
+
+                <!-- test_preparation_course -->
+                <div class="mb-3">
+                    <label class="form-label">test_preparation_course</label>
+                    <select class="form-control" name="test_preparation_course" required>
+                        <option value="" selected disabled>Select test_preparation_course</option>
+                        <option value="none">None</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <!-- reading_score -->
+                <div class="mb-3">
+                    <label class="form-label">reading_score out of 100</label>
+                    <input class="form-control" type="number" name="reading_score" min="0" max="100" required />
+                </div>
+
+                <!-- writing_score -->
+                <div class="mb-3">
+                    <label class="form-label">writing_score out of 100</label>
+                    <input class="form-control" type="number" name="writing_score" min="0" max="100" required />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mb-3">
+                    <input class="btn btn-primary" type="submit" value="Predict Your Exam Performance" />
+                </div>
+            </fieldset>
+        </form>
+
+        <!-- Display Prediction Result -->
+        {% if results %}
+            <h2>Prediction: {{ results }}</h2>
+        {% else %}
+            <h2>No prediction available. Please check your input.</h2>
+        {% endif %}
+    </div>
+
+    <!-- Optional Bootstrap JS and dependencies (for interactivity like modal, collapse, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
